@@ -158,3 +158,51 @@ def determine_start_date(
         return start_date, None
     last = find_last_month_with_data(data_dir)
     return last or start_date, last
+
+
+def get_last_dates_per_ticker(data_dir: Path, tickers: list[str]) -> dict[str, date | None]:
+    """
+    Scan all PRICES_*.csv and return the latest date present for each ticker.
+    Returns {ticker: max_date or None} for each ticker in the list.
+    """
+    data_dir = Path(data_dir)
+    ticker_set = set(tickers)
+    last: dict[str, date] = {}
+    for path in data_dir.rglob("PRICES_*.csv"):
+        try:
+            df = pd.read_csv(path, usecols=["date", "ticker"], parse_dates=["date"])
+            df = normalize_dates(df)
+            df = df[df["ticker"].isin(ticker_set)]
+            for t in df["ticker"].unique():
+                d = df[df["ticker"] == t]["date"].max()
+                if pd.isna(d):
+                    continue
+                if hasattr(d, "date"):
+                    d = d.date()
+                if t not in last or d > last[t]:
+                    last[t] = d
+        except Exception:
+            continue
+    return {t: last.get(t) for t in tickers}
+
+
+def merge_ticker_data_into_monthly_files(data_dir: Path, df: pd.DataFrame) -> None:
+    """
+    Merge a DataFrame of price rows (date, ticker, ...) into the correct
+    PRICES_YYYY-Mmm.csv files by year/month. Use after fetching by ticker.
+    """
+    if df.empty or "date" not in df.columns:
+        return
+    data_dir = Path(data_dir)
+    df = normalize_dates(df.copy())
+    df["_year"] = pd.to_datetime(df["date"]).dt.year
+    df["_month"] = pd.to_datetime(df["date"]).dt.month
+    for (year, month), grp in df.groupby(["_year", "_month"]):
+        path = get_month_path(data_dir, int(year), int(month))
+        add = grp.drop(columns=["_year", "_month"])
+        if path.exists():
+            existing_df = load_existing(path)
+            combined = pd.concat([existing_df, add], ignore_index=True)
+        else:
+            combined = add
+        save_price_data(combined, path)
