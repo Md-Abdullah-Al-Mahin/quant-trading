@@ -4,102 +4,150 @@ Must return a DataFrame with columns: date, ticker, open, high, low, close, volu
 """
 
 from datetime import date
+import io
+import logging
+import sys
+from contextlib import contextmanager
+
 import pandas as pd
 import yfinance as yf
+
+# Suppress yfinance verbose logging
+logging.getLogger('yfinance').setLevel(logging.CRITICAL)
 
 PRICE_COLUMNS = ["date", "ticker", "open", "high", "low", "close", "volume", "adj_close"]
 
 
+@contextmanager
+def suppress_stderr():
+    """Suppress stderr output (e.g., yfinance warnings about non-trading days)."""
+    old_stderr = sys.stderr
+    try:
+        sys.stderr = io.StringIO()
+        yield
+    finally:
+        sys.stderr = old_stderr
+
+
 def fetch_prices(tickers: list[str], start_date: date, end_date: date) -> pd.DataFrame:
-    """Fetch OHLCV + adj_close. Override or replace this module to use another source."""
+    """
+    Fetch OHLCV + adj_close from yfinance.
+    
+    Args:
+        tickers: List of ticker symbols
+        start_date: Start date (inclusive)
+        end_date: End date (inclusive)
+    
+    Returns:
+        DataFrame with columns: date, ticker, open, high, low, close, volume, adj_close
+    """
     if not tickers:
-        return pd.DataFrame(columns=PRICE_COLUMNS)
+        return _empty_prices_df()
 
     try:
-        data = yf.download(
-            tickers,
-            start=start_date.strftime("%Y-%m-%d"),
-            end=end_date.strftime("%Y-%m-%d"),
-            group_by="ticker",
-            auto_adjust=False,
-            progress=False,
-            threads=True,
-        )
+        with suppress_stderr():
+            data = yf.download(
+                tickers,
+                start=start_date.strftime("%Y-%m-%d"),
+                end=end_date.strftime("%Y-%m-%d"),
+                group_by="ticker",
+                auto_adjust=False,
+                progress=False,
+                threads=True,
+            )
     except Exception as e:
-        print(f"ERROR: Failed to download data for tickers {tickers}: {e}")
-        return pd.DataFrame(columns=PRICE_COLUMNS)
+        print(f"ERROR: Failed to download data: {e}")
+        return _empty_prices_df()
     
     if data.empty:
-        print(f"WARNING: No data returned for tickers: {tickers}")
-        return pd.DataFrame(columns=PRICE_COLUMNS)
+        return _empty_prices_df()
 
+    # Convert to long format
+    df = _convert_to_long_format(data, tickers)
+    
+    # Ensure all required columns exist
+    return _ensure_price_columns(df)
+
+
+def _empty_prices_df() -> pd.DataFrame:
+    """Return an empty DataFrame with the correct price columns."""
+    return pd.DataFrame(columns=PRICE_COLUMNS)
+
+
+def _normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize column names to lowercase with underscores."""
+    df.columns = [
+        c[0].lower().replace(" ", "_") if isinstance(c, tuple) 
+        else str(c).lower().replace(" ", "_")
+        for c in df.columns
+    ]
+    return df.rename(columns={"adj close": "adj_close"})
+
+
+def _convert_to_long_format(data: pd.DataFrame, tickers: list[str]) -> pd.DataFrame:
+    """Convert yfinance output to long format with one row per ticker-date."""
     if len(tickers) == 1:
-        out = _single_ticker_to_long(data, tickers[0])
-    else:
-        out = _multi_ticker_to_long(data, tickers)
-
-    for c in PRICE_COLUMNS:
-        if c not in out.columns:
-            out[c] = None
-    return out[[c for c in PRICE_COLUMNS if c in out.columns]]
+        return _process_single_ticker(data, tickers[0])
+    return _process_multiple_tickers(data, tickers)
 
 
-def _single_ticker_to_long(data: pd.DataFrame, ticker: str) -> pd.DataFrame:
+def _process_single_ticker(data: pd.DataFrame, ticker: str) -> pd.DataFrame:
+    """Process data for a single ticker."""
     try:
-        out = data.reset_index()
-        out["ticker"] = ticker
-        out = out.rename(columns={"Date": "date"})
-        out.columns = [str(c).lower().replace(" ", "_") for c in out.columns]
+        df = data.reset_index().rename(columns={"Date": "date"})
+        df["ticker"] = ticker
+        df = _normalize_columns(df)
         
-        if out.dropna(how="all").empty:
-            print(f"WARNING: No valid data for ticker: {ticker}")
-            return pd.DataFrame(columns=PRICE_COLUMNS)
+        if df.dropna(how="all").empty:
+            return _empty_prices_df()
         
-        return out
+        return df
     except Exception as e:
-        print(f"ERROR: Error processing data for ticker {ticker}: {e}")
-        return pd.DataFrame(columns=PRICE_COLUMNS)
+        print(f"ERROR: Failed to process ticker {ticker}: {e}")
+        return _empty_prices_df()
 
 
-def _multi_ticker_to_long(data: pd.DataFrame, tickers: list[str]) -> pd.DataFrame:
-    rows = []
-    for t in tickers:
+def _process_multiple_tickers(data: pd.DataFrame, tickers: list[str]) -> pd.DataFrame:
+    """Process data for multiple tickers."""
+    dfs = []
+    
+    for ticker in tickers:
         try:
-            sub = data[t].copy()
-        except (KeyError, TypeError):
+            # Extract ticker data from multi-index columns
             if isinstance(data.columns, pd.MultiIndex):
-                try:
-                    sub = data.xs(t, axis=1, level=0).copy()
-                except KeyError:
-                    print(f"WARNING: No data available for ticker: {t}")
-                    continue
+                ticker_data = data.xs(ticker, axis=1, level=0)
             else:
-                print(f"WARNING: Ticker not found in downloaded data: {t}")
+                ticker_data = data[ticker]
+            
+            # Skip if no valid data
+            ticker_data = ticker_data.dropna(how="all")
+            if ticker_data.empty:
                 continue
-        except Exception as e:
-            print(f"ERROR: Error extracting data for ticker {t}: {e}")
-            continue
-        
-        sub = sub.dropna(how="all")
-        if sub.empty:
-            print(f"INFO: No valid data rows for ticker: {t}")
-            continue
-        
-        try:
-            sub = sub.reset_index()
-            sub["ticker"] = t
-            sub.columns = [
-                c[0].lower().replace(" ", "_") if isinstance(c, tuple) else str(c).lower().replace(" ", "_")
-                for c in sub.columns
-            ]
-            sub = sub.rename(columns={sub.columns[0]: "date"} if "date" not in sub.columns else {})
-            rows.append(sub)
-        except Exception as e:
-            print(f"ERROR: Error formatting data for ticker {t}: {e}")
+            
+            # Format the data
+            df = ticker_data.reset_index()
+            df["ticker"] = ticker
+            df = _normalize_columns(df)
+            
+            # Ensure 'date' column exists
+            if "date" not in df.columns and len(df.columns) > 0:
+                df = df.rename(columns={df.columns[0]: "date"})
+            
+            dfs.append(df)
+            
+        except (KeyError, Exception):
+            # Silently skip tickers with no data
             continue
     
-    if not rows:
-        print("WARNING: No valid data for any tickers")
-        return pd.DataFrame(columns=PRICE_COLUMNS)
+    if not dfs:
+        return _empty_prices_df()
     
-    return pd.concat(rows, ignore_index=True).rename(columns={"adj close": "adj_close"})
+    return pd.concat(dfs, ignore_index=True)
+
+
+def _ensure_price_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Ensure all required columns exist and return only those columns."""
+    for col in PRICE_COLUMNS:
+        if col not in df.columns:
+            df[col] = None
+    return df[PRICE_COLUMNS]

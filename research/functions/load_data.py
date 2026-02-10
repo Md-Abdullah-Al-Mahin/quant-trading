@@ -1,5 +1,5 @@
 """
-Load quarterly price CSVs into a single DataFrame. Optional filters: tickers, start_date, end_date.
+Load monthly price CSVs into a single DataFrame. Optional filters: tickers, start_date, end_date.
 """
 
 from datetime import date
@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pandas as pd
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 COLUMNS = ["date", "ticker", "open", "high", "low", "close", "volume", "adj_close"]
 
 
@@ -17,11 +17,11 @@ def _parse_date(x: date | str | None) -> date | None:
     return date.fromisoformat(x) if isinstance(x, str) else x
 
 
-def _quarters_in_range(start: date, end: date):
-    y, q = start.year, (start.month - 1) // 3 + 1
-    while date(y, (q - 1) * 3 + 1, 1) <= end:
-        yield y, q
-        q, y = (q + 1, y) if q < 4 else (1, y + 1)
+def _months_in_range(start: date, end: date):
+    y, m = start.year, start.month
+    while date(y, m, 1) <= end:
+        yield y, m
+        m, y = (m + 1, y) if m < 12 else (1, y + 1)
 
 
 def _read_csv(path: Path) -> pd.DataFrame | None:
@@ -39,7 +39,7 @@ def load_prices(
     columns: list[str] | None = None,
 ) -> pd.DataFrame:
     """
-    Load price data from data/<year>/PRICES_<year>-Q<q>.csv into one DataFrame.
+    Load price data from data/<year>/PRICES_<year>-M<month>.csv into one DataFrame.
 
     tickers: include only these symbols; None = all.
     start_date / end_date: date or "YYYY-MM-DD"; None = no bound.
@@ -56,7 +56,7 @@ def load_prices(
     if start is not None or end is not None:
         start = start or date(1900, 1, 1)
         end = end or date(2100, 12, 31)
-        files = [root / str(y) / f"PRICES_{y}-Q{q}.csv" for y, q in _quarters_in_range(start, end)]
+        files = [root / str(y) / f"PRICES_{y}-M{m:02d}.csv" for y, m in _months_in_range(start, end)]
     else:
         files = sorted(root.rglob("PRICES_*.csv"))
 
