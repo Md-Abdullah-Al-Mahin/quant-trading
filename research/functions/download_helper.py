@@ -11,6 +11,16 @@ from typing import Callable
 
 import pandas as pd
 
+def find_project_root(start: Path | None = None) -> Path:
+    """Walk up from *start* (default: cwd) until a project marker is found."""
+    current = Path(start or Path.cwd()).resolve()
+    markers = [".git", "requirements.txt"]
+    while current != current.parent:
+        if any((current / m).exists() for m in markers):
+            return current
+        current = current.parent
+    raise FileNotFoundError("Could not find project root")
+
 
 @dataclass
 class DownloadStats:
@@ -164,25 +174,30 @@ def get_last_dates_per_ticker(data_dir: Path, tickers: list[str]) -> dict[str, d
     """
     Scan all PRICES_*.csv and return the latest date present for each ticker.
     Returns {ticker: max_date or None} for each ticker in the list.
+
+    Uses a single concat + groupby instead of per-file per-ticker lookups.
     """
     data_dir = Path(data_dir)
     ticker_set = set(tickers)
-    last: dict[str, date] = {}
-    for path in data_dir.rglob("PRICES_*.csv"):
+    paths = list(data_dir.rglob("PRICES_*.csv"))
+    if not paths:
+        return {t: None for t in tickers}
+
+    dfs: list[pd.DataFrame] = []
+    for p in paths:
         try:
-            df = pd.read_csv(path, usecols=["date", "ticker"], parse_dates=["date"])
-            df = normalize_dates(df)
+            df = pd.read_csv(p, usecols=["date", "ticker"], parse_dates=["date"])
             df = df[df["ticker"].isin(ticker_set)]
-            for t in df["ticker"].unique():
-                d = df[df["ticker"] == t]["date"].max()
-                if pd.isna(d):
-                    continue
-                if hasattr(d, "date"):
-                    d = d.date()
-                if t not in last or d > last[t]:
-                    last[t] = d
+            dfs.append(df)
         except Exception:
             continue
+
+    if not dfs:
+        return {t: None for t in tickers}
+
+    combined = pd.concat(dfs, ignore_index=True)
+    combined = normalize_dates(combined)
+    last = combined.groupby("ticker")["date"].max()
     return {t: last.get(t) for t in tickers}
 
 
@@ -206,3 +221,27 @@ def merge_ticker_data_into_monthly_files(data_dir: Path, df: pd.DataFrame) -> No
         else:
             combined = add
         save_price_data(combined, path)
+
+def split_into_contiguous_ranges(
+    dates: list[date],
+    max_gap_days: int = 30,
+) -> list[tuple[date, date]]:
+    """Split sorted gap dates into contiguous (start, end_exclusive) ranges.
+
+    A new range starts when consecutive dates are more than *max_gap_days*
+    apart.  Each returned tuple uses yfinance convention: the end date is
+    exclusive (last gap date + 1 day).
+    """
+    if not dates:
+        return []
+    dates = sorted(dates)
+    ranges: list[tuple[date, date]] = []
+    range_start = dates[0]
+    prev = dates[0]
+    for d in dates[1:]:
+        if (d - prev).days > max_gap_days:
+            ranges.append((range_start, prev + timedelta(days=1)))
+            range_start = d
+        prev = d
+    ranges.append((range_start, prev + timedelta(days=1)))
+    return ranges
