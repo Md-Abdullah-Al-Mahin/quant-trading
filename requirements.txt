@@ -1,0 +1,11 @@
+# Core (research: download_prices, data_source)
+pandas>=2.0.0
+yfinance>=0.2.36
+
+# Books / analysis notebooks
+numpy>=1.24.0
+matplotlib>=3.7.0
+statsmodels>=0.14.0
+
+# Excel support (e.g. books/ch3 .xls)
+xlrd>=2.0.0
