@@ -1,0 +1,133 @@
+Sector,Ticker,Full Name,Short Description
+Technology,AAPL,Apple Inc.,"Consumer electronics, software, and services ecosystem"
+Technology,MSFT,Microsoft Corporation,"Enterprise and consumer software, cloud, and AI services"
+Technology,NVDA,NVIDIA Corporation,Designs GPUs and accelerated computing platforms
+Technology,AVGO,Broadcom Inc.,Semiconductors and infrastructure software for data centers and networking
+Technology,ORCL,Oracle Corporation,Enterprise database and cloud infrastructure/application software
+Technology,CRM,"Salesforce, Inc.",Cloud CRM platform and enterprise software
+Technology,ADBE,Adobe Inc.,"Creative, document, and digital experience software"
+Technology,AMD,"Advanced Micro Devices, Inc.","CPUs and GPUs for PCs, servers, and data centers"
+Technology,INTC,Intel Corporation,Semiconductors and processors for PCs and servers
+Technology,CSCO,"Cisco Systems, Inc.","Networking hardware, software, and security solutions"
+Technology,QCOM,QUALCOMM Incorporated,Mobile and wireless semiconductors and licensing
+Technology,TXN,Texas Instruments Incorporated,Analog and embedded processing semiconductors
+Technology,NOW,"ServiceNow, Inc.",Enterprise workflow automation and IT service management software
+Technology,PANW,"Palo Alto Networks, Inc.","Cybersecurity platforms for networks, cloud, and endpoints"
+Technology,CRWD,"CrowdStrike Holdings, Inc.",Cloud-native endpoint and threat intelligence security
+Technology,IBM,International Business Machines Corporation,"Hybrid cloud, consulting, and enterprise infrastructure"
+Technology,ACN,Accenture plc,"IT consulting, systems integration, and managed services"
+Technology,INTU,Intuit Inc.,Financial software for consumers and small businesses
+Technology,SNOW,Snowflake Inc.,Cloud data platform for analytics and data warehousing
+Technology,PLTR,Palantir Technologies Inc.,Data integration and analytics platforms for enterprises and governments
+Technology,GOOGL,Alphabet Inc. (Class A),"Search, ads, cloud, and consumer internet products"
+Technology,META,"Meta Platforms, Inc.",Social platforms and digital advertising
+Technology,NFLX,"Netflix, Inc.",Subscription streaming entertainment service
+Technology,DIS,The Walt Disney Company,"Media networks, streaming, and theme parks"
+Technology,TMUS,"T-Mobile US, Inc.",US wireless telecommunications services
+Technology,VZ,Verizon Communications Inc.,Wireless and broadband telecommunications services
+Technology,T,AT&T Inc.,Telecommunications and broadband services
+Technology,CMCSA,Comcast Corporation,"Cable broadband, media, and entertainment"
+Technology,CHTR,"Charter Communications, Inc.",Cable broadband and communications services
+Consumer Discretionary,AMZN,"Amazon.com, Inc.","E-commerce, cloud computing, and digital services"
+Consumer Discretionary,TSLA,"Tesla, Inc.","Electric vehicles, energy storage, and related software"
+Consumer Discretionary,HD,"The Home Depot, Inc.",Home improvement retail and related services
+Consumer Discretionary,LOW,"Lowe's Companies, Inc.",Home improvement retail chain
+Consumer Discretionary,NKE,"Nike, Inc.","Athletic footwear, apparel, and equipment"
+Consumer Discretionary,MCD,McDonald's Corporation,Global fast-food restaurant franchisor and operator
+Consumer Discretionary,SBUX,Starbucks Corporation,Coffeehouses and branded beverages
+Consumer Discretionary,TJX,"The TJX Companies, Inc.",Off-price apparel and home fashion retail
+Consumer Discretionary,BKNG,Booking Holdings Inc.,Online travel reservations and related services
+Consumer Discretionary,ABNB,"Airbnb, Inc.",Online marketplace for lodging and travel experiences
+Consumer Discretionary,GM,General Motors Company,Automotive manufacturing and mobility services
+Consumer Discretionary,F,Ford Motor Company,Automotive manufacturing and financial services
+Consumer Discretionary,RCL,Royal Caribbean Group,Cruise vacation operator
+Consumer Discretionary,ROST,"Ross Stores, Inc.",Off-price apparel and home fashion retail
+Consumer Discretionary,LULU,Lululemon Athletica Inc.,Athletic apparel and accessories retailer
+Consumer Staples,PG,The Procter & Gamble Company,Branded consumer packaged goods in home and personal care
+Consumer Staples,KO,The Coca-Cola Company,Non-alcoholic beverages and concentrate systems
+Consumer Staples,PEP,"PepsiCo, Inc.",Beverages and snack foods
+Consumer Staples,WMT,Walmart Inc.,Big-box retail and e-commerce
+Consumer Staples,COST,Costco Wholesale Corporation,Warehouse club retail
+Consumer Staples,MDLZ,"Mondelez International, Inc.",Global snack foods and confectionery
+Consumer Staples,PM,Philip Morris International Inc.,Tobacco and nicotine products
+Consumer Staples,MO,"Altria Group, Inc.",US tobacco and nicotine products
+Consumer Staples,CL,Colgate-Palmolive Company,Oral care and household consumer products
+Consumer Staples,KMB,Kimberly-Clark Corporation,Personal care and paper-based consumer products
+Consumer Staples,KR,The Kroger Co.,Grocery retail and related services
+Consumer Staples,HSY,The Hershey Company,Chocolate and confectionery products
+Health Care,UNH,UnitedHealth Group Incorporated,Health insurance and healthcare services
+Health Care,JNJ,Johnson & Johnson,"Pharmaceuticals, medical devices, and consumer health"
+Health Care,PFE,Pfizer Inc.,Research-based biopharmaceutical products
+Health Care,MRK,"Merck & Co., Inc.","Pharmaceuticals, vaccines, and animal health"
+Health Care,ABBV,AbbVie Inc.,Biopharmaceuticals focused on immunology and oncology
+Health Care,LLY,Eli Lilly and Company,Pharmaceuticals including diabetes and obesity therapies
+Health Care,TMO,Thermo Fisher Scientific Inc.,"Life sciences tools, diagnostics, and lab services"
+Health Care,DHR,Danaher Corporation,"Life sciences, diagnostics, and environmental solutions"
+Health Care,AMGN,Amgen Inc.,Biotechnology therapeutics
+Health Care,GILD,"Gilead Sciences, Inc.",Biopharmaceuticals focused on antivirals and oncology
+Health Care,BMY,Bristol-Myers Squibb Company,Biopharmaceuticals focused on oncology and immunology
+Health Care,ISRG,"Intuitive Surgical, Inc.",Robotic-assisted surgical systems
+Health Care,MDT,Medtronic plc,Medical devices and therapies
+Health Care,ABT,Abbott Laboratories,"Diagnostics, devices, nutrition, and medicines"
+Health Care,SYK,Stryker Corporation,Orthopedic and medical/surgical devices
+Health Care,ZTS,Zoetis Inc.,Animal health medicines and vaccines
+Financials,JPM,JPMorgan Chase & Co.,Diversified banking and financial services
+Financials,BAC,Bank of America Corporation,Consumer and commercial banking services
+Financials,WFC,Wells Fargo & Company,Retail and commercial banking services
+Financials,C,Citigroup Inc.,Global banking and financial services
+Financials,GS,"The Goldman Sachs Group, Inc.","Investment banking, markets, and asset management"
+Financials,MS,Morgan Stanley,Wealth management and investment banking
+Financials,SCHW,The Charles Schwab Corporation,"Brokerage, banking, and wealth management"
+Financials,AXP,American Express Company,Payments network and card-based lending
+Financials,V,Visa Inc.,Global payments network
+Financials,MA,Mastercard Incorporated,Global payments network
+Financials,BLK,"BlackRock, Inc.",Asset management and iShares ETF platform
+Financials,SPGI,S&P Global Inc.,"Credit ratings, indices, and market intelligence"
+Financials,CME,CME Group Inc.,Derivatives exchanges and clearing services
+Financials,ICE,"Intercontinental Exchange, Inc.","Exchanges, clearing, and data services"
+Financials,CB,Chubb Limited,Property and casualty insurance
+Financials,PGR,Progressive Corporation,Auto and property insurance
+Financials,AIG,"American International Group, Inc.",Insurance and financial services
+Energy,XOM,Exxon Mobil Corporation,"Integrated oil and gas exploration, refining, and chemicals"
+Energy,CVX,Chevron Corporation,Integrated oil and gas producer and refiner
+Energy,COP,ConocoPhillips,Independent oil and gas exploration and production
+Energy,SLB,Schlumberger Limited,Oilfield services and technology
+Energy,EOG,"EOG Resources, Inc.",US shale oil and gas producer
+Energy,MPC,Marathon Petroleum Corporation,Refining and downstream energy logistics
+Energy,VLO,Valero Energy Corporation,Refining and fuels production
+Energy,PSX,Phillips 66,"Refining, midstream, and chemicals"
+Energy,OXY,Occidental Petroleum Corporation,Oil and gas exploration and production
+Energy,KMI,"Kinder Morgan, Inc.",Energy infrastructure and pipelines
+Industrials,CAT,Caterpillar Inc.,Construction and mining equipment manufacturer
+Industrials,DE,Deere & Company,Agricultural and construction machinery
+Industrials,HON,Honeywell International Inc.,"Industrial technology, aerospace, and automation"
+Industrials,GE,GE Aerospace,Aerospace engines and related services
+Industrials,RTX,RTX Corporation,Aerospace and defense systems
+Industrials,LMT,Lockheed Martin Corporation,Defense and aerospace contractor
+Industrials,BA,The Boeing Company,Commercial aircraft and defense systems
+Industrials,UNP,Union Pacific Corporation,Freight railroad transportation
+Industrials,CSX,CSX Corporation,Railroad transportation and logistics
+Industrials,NSC,Norfolk Southern Corporation,Freight railroad transportation
+Industrials,UPS,"United Parcel Service, Inc.",Package delivery and logistics
+Industrials,FDX,FedEx Corporation,Parcel delivery and logistics services
+Industrials,ETN,Eaton Corporation plc,Electrical equipment and power management
+Industrials,EMR,Emerson Electric Co.,Industrial automation and control systems
+Industrials,GD,General Dynamics Corporation,Defense systems and aerospace
+Industrials,NOC,Northrop Grumman Corporation,Defense and aerospace systems
+Industrials,LIN,Linde plc,Industrial gases and engineering
+Industrials,APD,"Air Products and Chemicals, Inc.",Industrial gases and related services
+Industrials,SHW,The Sherwin-Williams Company,"Paints, coatings, and specialty chemicals"
+Industrials,NUE,Nucor Corporation,Steel production and recycling
+Industrials,FCX,Freeport-McMoRan Inc.,Copper and gold mining
+Industrials,DOW,Dow Inc.,Commodity chemicals and plastics
+Industrials,DD,"DuPont de Nemours, Inc.",Specialty materials and chemicals
+Utilities,NEE,"NextEra Energy, Inc.",Electric utility with large renewable generation
+Utilities,DUK,Duke Energy Corporation,Regulated electric and gas utility
+Utilities,SO,The Southern Company,Regulated electric utility operations
+Utilities,EXC,Exelon Corporation,Regulated electric utility and transmission
+Utilities,AEP,"American Electric Power Company, Inc.",Regulated electric utility and transmission
+Real Estate,PLD,"Prologis, Inc.",Industrial logistics real estate (REIT)
+Real Estate,AMT,American Tower Corporation,Wireless communications towers (REIT)
+Real Estate,CCI,Crown Castle Inc.,US communications infrastructure (REIT)
+Real Estate,EQIX,"Equinix, Inc.",Data center REIT serving cloud and enterprises
+Real Estate,SPG,"Simon Property Group, Inc.",Retail mall real estate (REIT)

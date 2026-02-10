@@ -1,0 +1,185 @@
+Sector,Ticker,Full Name,Short Description
+US Equity,SPY,SPDR S&P 500 ETF Trust,Tracks the S&P 500 large-cap US equity index
+US Equity,IVV,iShares Core S&P 500 ETF,Tracks the S&P 500 large-cap US equity index
+US Equity,VOO,Vanguard S&P 500 ETF,Tracks the S&P 500 large-cap US equity index
+US Equity,SPLG,SPDR Portfolio S&P 500 ETF,Low-cost ETF tracking the S&P 500 index
+US Equity,RSP,Invesco S&P 500 Equal Weight ETF,Equal-weights S&P 500 constituents
+US Equity,VTI,Vanguard Total Stock Market ETF,Tracks the total US stock market
+US Equity,ITOT,iShares Core S&P Total U.S. Stock Market ETF,Tracks the total US stock market
+US Equity,SCHB,Schwab U.S. Broad Market ETF,Tracks a broad US equity market index
+US Equity,IWV,iShares Russell 3000 ETF,Tracks the Russell 3000 US stock universe
+US Equity,IWD,iShares Russell 1000 Value ETF,Tracks large-cap US value stocks
+US Equity,IWF,iShares Russell 1000 Growth ETF,Tracks large-cap US growth stocks
+US Equity,SCHX,Schwab U.S. Large-Cap ETF,Tracks large-cap US equities
+US Equity,VV,Vanguard Large-Cap ETF,Tracks large-cap US equities
+US Equity,VTV,Vanguard Value ETF,Tracks large-cap US value equities
+US Equity,VUG,Vanguard Growth ETF,Tracks large-cap US growth equities
+US Equity,MDY,SPDR S&P MidCap 400 ETF Trust,Tracks S&P MidCap 400 US mid-cap stocks
+US Equity,IJH,iShares Core S&P Mid-Cap ETF,Tracks S&P MidCap 400 US mid-cap stocks
+US Equity,IWR,iShares Russell Mid-Cap ETF,Tracks Russell mid-cap US stocks
+US Equity,IWM,iShares Russell 2000 ETF,Tracks Russell 2000 US small-cap stocks
+US Equity,VB,Vanguard Small-Cap ETF,Tracks US small-cap stocks
+US Equity,SCHA,Schwab U.S. Small-Cap ETF,Tracks US small-cap stocks
+US Equity,VXF,Vanguard Extended Market ETF,Tracks US stocks outside the S&P 500
+US Equity,DIA,SPDR Dow Jones Industrial Average ETF Trust,Tracks the Dow Jones Industrial Average
+US Equity,QQQ,Invesco QQQ Trust,Tracks the NASDAQ-100 index
+US Equity,QQQM,Invesco NASDAQ 100 ETF,Tracks the NASDAQ-100 index (lower-fee share class)
+Technology,XLK,Technology Select Sector SPDR Fund,Tracks S&P 500 information technology sector
+Technology,VGT,Vanguard Information Technology ETF,Tracks US information technology companies
+Technology,IYW,iShares U.S. Technology ETF,Tracks the US technology sector
+Technology,IGV,iShares Expanded Tech-Software Sector ETF,Tracks US software and tech services stocks
+Technology,SMH,VanEck Semiconductor ETF,Tracks global semiconductor companies
+Technology,SOXX,iShares Semiconductor ETF,Tracks US-listed semiconductor companies
+Health Care,XLV,Health Care Select Sector SPDR Fund,Tracks S&P 500 health care sector
+Health Care,VHT,Vanguard Health Care ETF,Tracks US health care companies
+Health Care,IYH,iShares U.S. Healthcare ETF,Tracks US health care companies
+Health Care,XBI,SPDR S&P Biotech ETF,Tracks US biotechnology stocks
+Financials,XLF,Financial Select Sector SPDR Fund,Tracks S&P 500 financial sector
+Financials,VFH,Vanguard Financials ETF,Tracks US financial companies
+Financials,IYF,iShares U.S. Financials ETF,Tracks US financial companies
+Financials,KBE,SPDR S&P Bank ETF,Tracks US banking industry stocks
+Financials,KRE,SPDR S&P Regional Banking ETF,Tracks US regional bank stocks
+Energy,XLE,Energy Select Sector SPDR Fund,Tracks S&P 500 energy sector
+Energy,VDE,Vanguard Energy ETF,Tracks US energy companies
+Energy,IYE,iShares U.S. Energy ETF,Tracks US energy companies
+Industrials,XLI,Industrial Select Sector SPDR Fund,Tracks S&P 500 industrials sector
+Industrials,VIS,Vanguard Industrials ETF,Tracks US industrial companies
+Industrials,IYJ,iShares U.S. Industrials ETF,Tracks US industrial companies
+Industrials,PAVE,Global X U.S. Infrastructure Development ETF,Tracks US infrastructure-related companies
+Consumer Discretionary,XLY,Consumer Discretionary Select Sector SPDR Fund,Tracks S&P 500 consumer discretionary sector
+Consumer Discretionary,VCR,Vanguard Consumer Discretionary ETF,Tracks US consumer discretionary companies
+Consumer Discretionary,IYC,iShares U.S. Consumer Discretionary ETF,Tracks US consumer discretionary companies
+Consumer Discretionary,XHB,SPDR S&P Homebuilders ETF,Tracks US homebuilding and housing-related stocks
+Consumer Staples,XLP,Consumer Staples Select Sector SPDR Fund,Tracks S&P 500 consumer staples sector
+Consumer Staples,VDC,Vanguard Consumer Staples ETF,Tracks US consumer staples companies
+Consumer Staples,IYK,iShares U.S. Consumer Staples ETF,Tracks US consumer staples companies
+Materials,XLB,Materials Select Sector SPDR Fund,Tracks S&P 500 materials sector
+Materials,VAW,Vanguard Materials ETF,Tracks US materials companies
+Materials,IYM,iShares U.S. Basic Materials ETF,Tracks US materials companies
+Materials,XME,SPDR S&P Metals & Mining ETF,Tracks US metals and mining stocks
+Materials,COPX,Global X Copper Miners ETF,Tracks global copper mining companies
+Materials,REMX,VanEck Rare Earth/Strategic Metals ETF,Tracks rare earth and strategic metals miners
+Utilities,XLU,Utilities Select Sector SPDR Fund,Tracks S&P 500 utilities sector
+Utilities,VPU,Vanguard Utilities ETF,Tracks US utilities companies
+Real Estate,XLRE,Real Estate Select Sector SPDR Fund,Tracks S&P 500 real estate sector
+Real Estate,VNQ,Vanguard Real Estate ETF,Tracks US equity REITs
+Real Estate,IYR,iShares U.S. Real Estate ETF,Tracks US real estate (REITs) companies
+Real Estate,SCHH,Schwab U.S. REIT ETF,Tracks US REITs
+Real Estate,REET,iShares Global REIT ETF,Tracks global REITs
+Real Estate,MORT,VanEck Mortgage REIT Income ETF,Tracks mortgage REITs
+Real Estate,REM,iShares Mortgage Real Estate ETF,Tracks mortgage real estate companies
+Thematic,ICLN,iShares Global Clean Energy ETF,Tracks global clean energy companies
+Thematic,TAN,Invesco Solar ETF,Tracks global solar energy companies
+Thematic,QCLN,First Trust NASDAQ Clean Edge Green Energy ETF,Tracks clean energy and green tech stocks
+Thematic,PBW,Invesco WilderHill Clean Energy ETF,Tracks US-listed clean energy companies
+Thematic,LIT,Global X Lithium & Battery Tech ETF,Tracks lithium and battery technology companies
+Thematic,BATT,Amplify Lithium & Battery Technology ETF,"Tracks lithium, battery, and EV supply chain companies"
+Thematic,BOTZ,Global X Robotics & Artificial Intelligence ETF,Tracks robotics and AI companies
+Thematic,ROBO,ROBO Global Robotics and Automation Index ETF,Tracks robotics and automation companies
+Thematic,FINX,Global X FinTech ETF,Tracks financial technology companies
+Thematic,HACK,ETFMG Prime Cyber Security ETF,Tracks cybersecurity companies
+Thematic,CIBR,First Trust NASDAQ Cybersecurity ETF,Tracks cybersecurity companies
+Thematic,SKYY,First Trust Cloud Computing ETF,Tracks cloud computing companies
+Thematic,WCLD,WisdomTree Cloud Computing Fund,Tracks cloud software and services companies
+Thematic,AIQ,Global X Artificial Intelligence & Technology ETF,Tracks AI and big data companies
+Thematic,DRIV,Global X Autonomous & Electric Vehicles ETF,Tracks autonomous and electric vehicle themes
+Thematic,IDRV,iShares Self-Driving EV and Tech ETF,Tracks self-driving and EV technology companies
+Thematic,BLOK,Amplify Transformational Data Sharing ETF,Tracks blockchain and data sharing companies
+Thematic,BITQ,Bitwise Crypto Industry Innovators ETF,Tracks companies tied to the crypto economy
+International Equity,EFA,iShares MSCI EAFE ETF,Tracks developed markets outside the US (EAFE)
+International Equity,EEM,iShares MSCI Emerging Markets ETF,Tracks emerging market equities
+International Equity,VEA,Vanguard FTSE Developed Markets ETF,Tracks developed markets outside the US
+International Equity,VWO,Vanguard FTSE Emerging Markets ETF,Tracks emerging market equities
+International Equity,IEMG,iShares Core MSCI Emerging Markets ETF,Tracks emerging market equities
+International Equity,VXUS,Vanguard Total International Stock ETF,Tracks total world ex-US equities
+International Equity,IXUS,iShares Core MSCI Total International Stock ETF,Tracks total international equities
+International Equity,SCHF,Schwab International Equity ETF,Tracks developed international equities
+International Equity,SCHE,Schwab Emerging Markets Equity ETF,Tracks emerging market equities
+International Equity,IEFA,iShares Core MSCI EAFE ETF,Tracks developed markets outside the US (EAFE)
+International Equity,EWJ,iShares MSCI Japan ETF,Tracks Japanese equities
+International Equity,EWZ,iShares MSCI Brazil ETF,Tracks Brazilian equities
+International Equity,EWG,iShares MSCI Germany ETF,Tracks German equities
+International Equity,EWC,iShares MSCI Canada ETF,Tracks Canadian equities
+International Equity,FXI,iShares China Large-Cap ETF,Tracks large-cap Chinese equities
+International Equity,INDA,iShares MSCI India ETF,Tracks Indian equities
+International Equity,EWT,iShares MSCI Taiwan ETF,Tracks Taiwanese equities
+International Equity,EWY,iShares MSCI South Korea ETF,Tracks South Korean equities
+International Equity,EWW,iShares MSCI Mexico ETF,Tracks Mexican equities
+International Equity,VGK,Vanguard FTSE Europe ETF,Tracks European equities
+International Equity,VPL,Vanguard FTSE Pacific ETF,Tracks developed Pacific region equities
+International Equity,VEU,Vanguard FTSE All-World ex-US ETF,Tracks all-world equities excluding the US
+International Equity,IEU,iShares Europe ETF,Tracks European equities
+International Equity,EPP,iShares MSCI Pacific ex-Japan ETF,Tracks Pacific equities excluding Japan
+International Equity,ASHR,Xtrackers Harvest CSI 300 China A-Shares ETF,Tracks China A-share large-cap equities
+Fixed Income,AGG,iShares Core U.S. Aggregate Bond ETF,Tracks US investment-grade bond market
+Fixed Income,BND,Vanguard Total Bond Market ETF,Tracks US investment-grade bonds
+Fixed Income,BNDX,Vanguard Total International Bond ETF,Tracks investment-grade international bonds
+Fixed Income,TLT,iShares 20+ Year Treasury Bond ETF,Tracks long-term US Treasury bonds
+Fixed Income,IEF,iShares 7-10 Year Treasury Bond ETF,Tracks intermediate US Treasury bonds
+Fixed Income,SHY,iShares 1-3 Year Treasury Bond ETF,Tracks short-term US Treasury bonds
+Fixed Income,SHV,iShares Short Treasury Bond ETF,Tracks very short-term US Treasuries
+Fixed Income,VGSH,Vanguard Short-Term Treasury ETF,Tracks short-term US Treasuries
+Fixed Income,VGIT,Vanguard Intermediate-Term Treasury ETF,Tracks intermediate US Treasuries
+Fixed Income,VGLT,Vanguard Long-Term Treasury ETF,Tracks long-term US Treasuries
+Fixed Income,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,Tracks investment-grade US corporate bonds
+Fixed Income,HYG,iShares iBoxx $ High Yield Corporate Bond ETF,Tracks high-yield US corporate bonds
+Fixed Income,JNK,SPDR Bloomberg High Yield Bond ETF,Tracks high-yield US corporate bonds
+Fixed Income,TIP,iShares TIPS Bond ETF,Tracks US Treasury inflation-protected securities
+Fixed Income,VTIP,Vanguard Short-Term Inflation-Protected Securities ETF,Tracks short-term US TIPS
+Fixed Income,EMB,iShares J.P. Morgan USD Emerging Markets Bond ETF,Tracks USD-denominated emerging market bonds
+Fixed Income,MUB,iShares National Muni Bond ETF,Tracks US investment-grade municipal bonds
+Fixed Income,TFI,SPDR Nuveen Bloomberg Municipal Bond ETF,Tracks US municipal bond market
+Fixed Income,FLOT,iShares Floating Rate Bond ETF,Tracks investment-grade floating-rate bonds
+Commodities,DBC,Invesco DB Commodity Index Tracking Fund,Tracks a diversified commodity futures basket
+Commodities,PDBC,Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF,Tracks diversified commodities with optimized roll
+Commodities,GLD,SPDR Gold Shares,Tracks the price of physical gold
+Commodities,IAU,iShares Gold Trust,Tracks the price of physical gold
+Commodities,IAUM,iShares Gold Trust Micro,Tracks the price of physical gold (smaller shares)
+Commodities,GLDM,SPDR Gold MiniShares Trust,Tracks the price of physical gold (mini shares)
+Commodities,SLV,iShares Silver Trust,Tracks the price of physical silver
+Commodities,USO,United States Oil Fund,Tracks WTI crude oil futures
+Commodities,BNO,United States Brent Oil Fund,Tracks Brent crude oil futures
+Commodities,UNG,United States Natural Gas Fund,Tracks natural gas futures
+Commodities,DBA,Invesco DB Agriculture Fund,Tracks an agriculture commodity futures basket
+Commodities,DBB,Invesco DB Base Metals Fund,Tracks industrial metals futures
+Commodities,CPER,United States Copper Index Fund,Tracks copper futures index exposure
+Commodities,WEAT,Teucrium Wheat Fund,Tracks wheat futures
+Commodities,CORN,Teucrium Corn Fund,Tracks corn futures
+Commodities,SOYB,Teucrium Soybean Fund,Tracks soybean futures
+Commodities,PPLT,abrdn Physical Platinum Shares ETF,Tracks the price of physical platinum
+Commodities,PALL,abrdn Physical Palladium Shares ETF,Tracks the price of physical palladium
+US Equity,SCHD,Schwab U.S. Dividend Equity ETF,Tracks high-quality US dividend stocks
+US Equity,VYM,Vanguard High Dividend Yield ETF,Tracks high-dividend-yielding US stocks
+US Equity,DVY,iShares Select Dividend ETF,Tracks US dividend-paying stocks
+US Equity,DGRO,iShares Core Dividend Growth ETF,Tracks US dividend growth stocks
+US Equity,HDV,iShares Core High Dividend ETF,Tracks US high dividend stocks
+US Equity,SPHD,Invesco S&P 500 High Dividend Low Volatility ETF,"Tracks high dividend, low volatility US stocks"
+US Equity,NOBL,ProShares S&P 500 Dividend Aristocrats ETF,Tracks S&P 500 dividend aristocrats
+US Equity,SDY,SPDR S&P Dividend ETF,Tracks dividend-focused US stocks
+US Equity,FVD,First Trust Value Line Dividend Index Fund,Tracks dividend-paying US equities
+US Equity,PEY,Invesco High Yield Equity Dividend Achievers ETF,Tracks high-yield US dividend achievers
+US Equity,SPYD,SPDR Portfolio S&P 500 High Dividend ETF,Tracks high dividend yield S&P 500 stocks
+US Equity,VIG,Vanguard Dividend Appreciation ETF,Tracks US dividend growers
+International Equity,SCHY,Schwab International Dividend Equity ETF,Tracks dividend-focused international equities
+Leveraged & Inverse,VXX,iPath Series B S&P 500 VIX Short-Term Futures ETN,Tracks short-term VIX futures exposure
+Leveraged & Inverse,UVXY,ProShares Ultra VIX Short-Term Futures ETF,Leveraged exposure to short-term VIX futures
+Leveraged & Inverse,SVXY,ProShares Short VIX Short-Term Futures ETF,Inverse exposure to short-term VIX futures
+Leveraged & Inverse,TQQQ,ProShares UltraPro QQQ,3x daily exposure to NASDAQ-100
+Leveraged & Inverse,SQQQ,ProShares UltraPro Short QQQ,-3x daily exposure to NASDAQ-100
+Leveraged & Inverse,UPRO,ProShares UltraPro S&P 500,3x daily exposure to S&P 500
+Leveraged & Inverse,SPXU,ProShares UltraPro Short S&P 500,-3x daily exposure to S&P 500
+Leveraged & Inverse,SH,ProShares Short S&P 500,-1x daily exposure to S&P 500
+Leveraged & Inverse,SDS,ProShares UltraShort S&P 500,-2x daily exposure to S&P 500
+Leveraged & Inverse,SSO,ProShares Ultra S&P 500,2x daily exposure to S&P 500
+Leveraged & Inverse,QID,ProShares UltraShort QQQ,-2x daily exposure to NASDAQ-100
+Leveraged & Inverse,QLD,ProShares Ultra QQQ,2x daily exposure to NASDAQ-100
+Leveraged & Inverse,TMF,Direxion Daily 20+ Year Treasury Bull 3X Shares,3x daily exposure to long-term US Treasuries
+Leveraged & Inverse,TMV,Direxion Daily 20+ Year Treasury Bear 3X Shares,-3x daily exposure to long-term US Treasuries
+Multi-Asset,AOR,iShares Core Growth Allocation ETF,Multi-asset allocation with moderate growth tilt
+Multi-Asset,AOA,iShares Core Aggressive Allocation ETF,Multi-asset allocation with aggressive equity tilt
+Multi-Asset,AOM,iShares Core Moderate Allocation ETF,Multi-asset allocation with balanced risk
+Multi-Asset,AOK,iShares Core Conservative Allocation ETF,Multi-asset allocation with conservative risk
+Multi-Asset,NTSX,WisdomTree U.S. Efficient Core Fund,90/60-style equity plus Treasury futures exposure
+Multi-Asset,RPAR,RPAR Risk Parity ETF,Risk parity allocation across major asset classes
+Crypto,BITO,ProShares Bitcoin Strategy ETF,Tracks Bitcoin futures via CME-listed contracts
+Crypto,BITI,ProShares Short Bitcoin Strategy ETF,Inverse exposure to Bitcoin futures
