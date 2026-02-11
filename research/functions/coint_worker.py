@@ -4,6 +4,8 @@ initializer sets _wide so worker processes have the panel without per-task pickl
 """
 import warnings
 
+from statsmodels.regression.linear_model import OLS
+from statsmodels.tools import add_constant
 from statsmodels.tsa.stattools import coint
 from statsmodels.tools.sm_exceptions import CollinearityWarning
 
@@ -27,6 +29,9 @@ def test_pair(t1, t2):
         try:
             coint_t, pvalue, crit_values = coint(y0, y1, autolag=None, maxlag=0)
             collinear = any(issubclass(x.category, CollinearityWarning) for x in w)
+            # Spread = residual from cointegrating regression (y0 on y1); std measures deviation from mean
+            ols_fit = OLS(y0, add_constant(y1)).fit()
+            spread_std = float(ols_fit.resid.std())
             return {
                 "ticker1": t1,
                 "ticker2": t2,
@@ -37,8 +42,14 @@ def test_pair(t1, t2):
                 "crit_10pct": float(crit_values[2]) if crit_values is not None else None,
                 "cointegrated_5pct": pvalue < 0.05,
                 "collinear": collinear,
+                "spread_std": spread_std,
             }
         except Exception as e:
+            try:
+                ols_fit = OLS(y0, add_constant(y1)).fit()
+                spread_std = float(ols_fit.resid.std())
+            except Exception:
+                spread_std = None
             return {
                 "ticker1": t1,
                 "ticker2": t2,
@@ -49,5 +60,6 @@ def test_pair(t1, t2):
                 "crit_10pct": None,
                 "cointegrated_5pct": False,
                 "collinear": False,
+                "spread_std": spread_std,
                 "error": str(e),
             }
