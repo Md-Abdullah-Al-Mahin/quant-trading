@@ -36,11 +36,6 @@ class FetchResult:
 
 TickerRanges = dict[str, Union[tuple[date, date], list[tuple[date, date]]]]
 
-
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
-
 def fetch_and_store(
     ticker_ranges: TickerRanges,
     data_dir: Path,
@@ -89,6 +84,7 @@ def fetch_and_store(
     ticker_rows: dict[str, int] = {}
 
     for (start, end), group_tickers in range_groups.items():
+        print(f"Fetching data {start} to {end} for {",".join(group_tickers)}")
         for i in range(0, len(group_tickers), batch_size):
             batch = group_tickers[i : i + batch_size]
             df = _fetch_batch_with_retry(batch, start, end, max_retries, delay)
@@ -129,11 +125,6 @@ def fetch_and_store(
             result.failed.append(ticker)
 
     return result
-
-
-# ---------------------------------------------------------------------------
-# Internal helpers
-# ---------------------------------------------------------------------------
 
 def _fetch_batch_with_retry(
     tickers: list[str],
