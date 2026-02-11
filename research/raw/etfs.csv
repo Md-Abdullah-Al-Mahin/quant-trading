@@ -39,6 +39,9 @@ Financials,VFH,Vanguard Financials ETF,Tracks US financial companies
 Financials,IYF,iShares U.S. Financials ETF,Tracks US financial companies
 Financials,KBE,SPDR S&P Bank ETF,Tracks US banking industry stocks
 Financials,KRE,SPDR S&P Regional Banking ETF,Tracks US regional bank stocks
+Financials,KIE,SPDR S&P Insurance ETF,Tracks US insurance industry stocks (S&P Insurance Select Industry Index)
+Financials,IAK,iShares U.S. Insurance ETF,Tracks US insurance companies (Dow Jones U.S. Select Insurance Index)
+Financials,KBWP,Invesco KBW Property & Casualty Insurance ETF,Tracks US property & casualty insurance companies (KBW Nasdaq P&C Index)
 Energy,XLE,Energy Select Sector SPDR Fund,Tracks S&P 500 energy sector
 Energy,VDE,Vanguard Energy ETF,Tracks US energy companies
 Energy,IYE,iShares U.S. Energy ETF,Tracks US energy companies
