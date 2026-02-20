@@ -23,8 +23,10 @@ import pandas as pd
 
 from research.functions.data_source import fetch_prices, PRICE_COLUMNS
 from research.functions.download_helper import (
-    merge_ticker_data_into_monthly_files,
+    get_month_path,
+    load_existing,
     normalize_dates,
+    save_price_data,
 )
 
 @dataclass
@@ -36,11 +38,33 @@ class FetchResult:
 
 TickerRanges = dict[str, Union[tuple[date, date], list[tuple[date, date]]]]
 
+
+def _append_to_monthly_accumulator(
+    new_data_by_month: dict[tuple[int, int], pd.DataFrame],
+    df: pd.DataFrame,
+) -> None:
+    """Append price rows into new_data_by_month keyed by (year, month)."""
+    if df.empty or "date" not in df.columns:
+        return
+    df = normalize_dates(df.copy())
+    df["_year"] = pd.to_datetime(df["date"]).dt.year
+    df["_month"] = pd.to_datetime(df["date"]).dt.month
+    for (year, month), grp in df.groupby(["_year", "_month"]):
+        key = (int(year), int(month))
+        add = grp.drop(columns=["_year", "_month"])
+        if key not in new_data_by_month:
+            new_data_by_month[key] = pd.DataFrame(columns=PRICE_COLUMNS)
+        new_data_by_month[key] = pd.concat(
+            [new_data_by_month[key], add], ignore_index=True
+        )
+
+
 def fetch_and_store(
     ticker_ranges: TickerRanges,
     data_dir: Path,
     *,
     filter_dates: dict[str, set[date]] | None = None,
+    min_date_per_ticker: dict[str, date] | None = None,
     batch_size: int = 20,
     base_delay: float = 0.3,
     max_retries: int = 3,
@@ -57,7 +81,10 @@ def fetch_and_store(
         data_dir:      Root data directory (contains year subfolders).
         filter_dates:  Optional {ticker: set of dates} — only keep rows on these
                        dates. Use for backfill to discard non-gap dates.
-        batch_size:    Max tickers per yfinance API call (default 20).
+        min_date_per_ticker: Optional {ticker: date} — only keep rows with
+                       date > min_date_per_ticker[ticker]. Used for coalesced
+                       single-range runs to avoid storing already-have data.
+        batch_size:    Max tickers per yfinance API call (default 20; 20–50 typical).
         base_delay:    Seconds to wait between successful calls (default 0.3).
         max_retries:   Retries per batch on failure/empty (default 3).
         on_ticker:     Callback(ticker, rows_stored) after each ticker finishes.
@@ -82,9 +109,10 @@ def fetch_and_store(
             range_groups.setdefault(r, []).append(ticker)
 
     ticker_rows: dict[str, int] = {}
+    new_data_by_month: dict[tuple[int, int], pd.DataFrame] = {}
 
     for (start, end), group_tickers in range_groups.items():
-        print(f"Fetching data {start} to {end} for {",".join(group_tickers)}")
+        print(f"Fetching data {start} to {end} for {','.join(group_tickers)}")
         for i in range(0, len(group_tickers), batch_size):
             batch = group_tickers[i : i + batch_size]
             df = _fetch_batch_with_retry(batch, start, end, max_retries, delay)
@@ -106,13 +134,30 @@ def fetch_and_store(
                     if ticker_df.empty:
                         continue
 
-                merge_ticker_data_into_monthly_files(data_dir, ticker_df)
-                rows = len(ticker_df)
-                ticker_rows[ticker] = ticker_rows.get(ticker, 0) + rows
+                # Optional: only keep rows after min_date (coalesced single-range runs)
+                if min_date_per_ticker is not None and ticker in min_date_per_ticker:
+                    ticker_df = normalize_dates(ticker_df)
+                    ticker_df = ticker_df[
+                        ticker_df["date"] > min_date_per_ticker[ticker]
+                    ]
+                    if ticker_df.empty:
+                        continue
+
+                _append_to_monthly_accumulator(new_data_by_month, ticker_df)
+                ticker_rows[ticker] = ticker_rows.get(ticker, 0) + len(ticker_df)
 
             # Successful call — decay delay back toward base
             delay = max(base_delay, delay * 0.8)
             time.sleep(delay)
+
+    # Merge accumulated data into monthly CSVs (one read/write per affected month)
+    for (year, month) in sorted(new_data_by_month.keys()):
+        path = get_month_path(data_dir, year, month)
+        combined = new_data_by_month[(year, month)]
+        if path.exists():
+            existing = load_existing(path)
+            combined = pd.concat([existing, combined], ignore_index=True)
+        save_price_data(combined, path)
 
     all_tickers = set(ticker_ranges.keys())
     for ticker in all_tickers:
