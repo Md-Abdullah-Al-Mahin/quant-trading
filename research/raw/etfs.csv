@@ -24,12 +24,12 @@ US Equity,VXF,Vanguard Extended Market ETF,Tracks US stocks outside the S&P 500
 US Equity,DIA,SPDR Dow Jones Industrial Average ETF Trust,Tracks the Dow Jones Industrial Average
 US Equity,QQQ,Invesco QQQ Trust,Tracks the NASDAQ-100 index
 US Equity,QQQM,Invesco NASDAQ 100 ETF,Tracks the NASDAQ-100 index (lower-fee share class)
-Technology,XLK,Technology Select Sector SPDR Fund,Tracks S&P 500 information technology sector
-Technology,VGT,Vanguard Information Technology ETF,Tracks US information technology companies
-Technology,IYW,iShares U.S. Technology ETF,Tracks the US technology sector
-Technology,IGV,iShares Expanded Tech-Software Sector ETF,Tracks US software and tech services stocks
-Technology,SMH,VanEck Semiconductor ETF,Tracks global semiconductor companies
-Technology,SOXX,iShares Semiconductor ETF,Tracks US-listed semiconductor companies
+Information Technology,XLK,Technology Select Sector SPDR Fund,Tracks S&P 500 information technology sector
+Information Technology,VGT,Vanguard Information Technology ETF,Tracks US information technology companies
+Information Technology,IYW,iShares U.S. Technology ETF,Tracks the US technology sector
+Information Technology,IGV,iShares Expanded Tech-Software Sector ETF,Tracks US software and tech services stocks
+Information Technology,SMH,VanEck Semiconductor ETF,Tracks global semiconductor companies
+Information Technology,SOXX,iShares Semiconductor ETF,Tracks US-listed semiconductor companies
 Health Care,XLV,Health Care Select Sector SPDR Fund,Tracks S&P 500 health care sector
 Health Care,VHT,Vanguard Health Care ETF,Tracks US health care companies
 Health Care,IYH,iShares U.S. Healthcare ETF,Tracks US health care companies
