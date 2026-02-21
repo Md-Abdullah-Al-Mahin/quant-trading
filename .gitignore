@@ -207,3 +207,6 @@ marimo/_lsp/
 __marimo__/
 
 .DS_Store
+
+# Large processed outputs (exceed GitHub 100 MB limit)
+research/processed/cointegration_results.csv
