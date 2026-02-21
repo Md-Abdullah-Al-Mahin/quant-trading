@@ -7,28 +7,12 @@ from pathlib import Path
 
 import pandas as pd
 
+from functions.data_loading import aggregate_long_prices, discover_monthly_csv_files
+from functions.dates import parse_date
+from functions.io import read_csv_or_none
+
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 COLUMNS = ["date", "ticker", "open", "high", "low", "close", "volume", "adj_close"]
-
-
-def _parse_date(x: date | str | None) -> date | None:
-    if x is None:
-        return None
-    return date.fromisoformat(x) if isinstance(x, str) else x
-
-
-def _months_in_range(start: date, end: date):
-    y, m = start.year, start.month
-    while date(y, m, 1) <= end:
-        yield y, m
-        m, y = (m + 1, y) if m < 12 else (1, y + 1)
-
-
-def _read_csv(path: Path) -> pd.DataFrame | None:
-    try:
-        return pd.read_csv(path, parse_dates=["date"]) if path.is_file() else None
-    except Exception:
-        return None
 
 
 def load_prices(
@@ -50,27 +34,32 @@ def load_prices(
     if not root.is_dir():
         return pd.DataFrame(columns=COLUMNS)
 
-    start = _parse_date(start_date)
-    end = _parse_date(end_date)
+    start = parse_date(start_date)
+    end = parse_date(end_date)
 
     if start is not None or end is not None:
-        start = start or date(1900, 1, 1)
-        end = end or date(2100, 12, 31)
-        files = [root / str(y) / f"PRICES_{y}-M{m:02d}.csv" for y, m in _months_in_range(start, end)]
+        start_d = start or date(1900, 1, 1)
+        end_d = end or date(2100, 12, 31)
+        files = discover_monthly_csv_files(root, start_d, end_d)
     else:
-        files = sorted(root.rglob("PRICES_*.csv"))
+        files = discover_monthly_csv_files(root, None, None)
 
-    parts = [df for f in files if (df := _read_csv(f)) is not None and not df.empty]
+    parts = [
+        df
+        for f in files
+        if (df := read_csv_or_none(f, parse_dates=["date"])) is not None and not df.empty
+    ]
     if not parts:
         return pd.DataFrame(columns=COLUMNS)
 
-    out = pd.concat(parts, ignore_index=True).drop_duplicates(subset=["date", "ticker"])
-    dt = pd.to_datetime(out["date"]).dt.date
-    lo, hi = start or date(1900, 1, 1), end or date(2100, 12, 31)
-    out = out[(dt >= lo) & (dt <= hi)]
-    if tickers:
-        out = out[out["ticker"].isin(tickers)]
-    out = out.sort_values(["date", "ticker"]).reset_index(drop=True)
+    out = aggregate_long_prices(
+        parts,
+        date_col="date",
+        ticker_col="ticker",
+        start_date=start,
+        end_date=end,
+        tickers=tickers,
+    )
     if columns:
         out = out[columns]
     return out
