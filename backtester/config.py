@@ -1,0 +1,1 @@
+"""Default backtester configuration."""
